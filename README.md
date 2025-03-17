@@ -15,3 +15,6 @@
 * [极简纯静态v1](./packages/static-web)
 * 🚩[极简纯静态v2](./packages/client)
 * [ ] 带后端服务
+
+## 鸣谢
+  - [ATQQ](https://github.com/ATQQ)
