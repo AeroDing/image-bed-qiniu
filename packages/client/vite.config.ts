@@ -12,8 +12,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { configDefaults } from 'vitest/config'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/' : '/',
+export default defineConfig(() => ({
+  base: '/image-bed-qiniu/',
   plugins: [
     vue(),
     vueJsx(),
@@ -36,18 +36,6 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     include: ['vue', 'vue-router', 'pinia', 'axios'],
-  },
-  build: {
-    sourcemap: mode !== 'production',
-    // 添加资源处理配置
-    assetsDir: 'assets',
-    rollupOptions: {
-      output: {
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
-      },
-    },
   },
   server: {
     port: 8080,
