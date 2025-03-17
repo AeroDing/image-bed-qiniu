@@ -73,9 +73,10 @@ const envToken = btoa(JSON.stringify({
   type: 'upyun',
   uriPrefix,
   //  TODO: 自定义 upyun 上传补充配置
-  //  config: {
-
-  // },
+  config: {
+    useCdnDomain: true,
+    region: 'http://imgbed.dpxin.top', // 设置正确的存储区域
+  },
 }))
 if (!process.env.CI) {
   // 复制到剪贴板
