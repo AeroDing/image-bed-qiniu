@@ -12,8 +12,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { configDefaults } from 'vitest/config'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  base: '/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/' : '/',
   plugins: [
     vue(),
     vueJsx(),
@@ -38,7 +38,16 @@ export default defineConfig({
     include: ['vue', 'vue-router', 'pinia', 'axios'],
   },
   build: {
-    sourcemap: true,
+    sourcemap: mode !== 'production',
+    // 添加资源处理配置
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+      },
+    },
   },
   server: {
     port: 8080,
@@ -67,4 +76,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-})
+}))
